@@ -348,11 +348,14 @@ CollisionDone:
 CheckCollision ENDP
 
 AnimateBike PROC
-    INC bikeX
-    CMP bikeX, 50             ; Keep bike in reasonable position
-    JLE AnimDone
-    MOV bikeX, 35
-AnimDone:
+    ; Create subtle rightward movement by cycling position
+    MOV AL, bikeX
+    ADD AL, 1
+    CMP AL, 45             ; Limit rightward movement
+    JLE SetNewPos
+    MOV AL, 35             ; Reset to starting position
+SetNewPos:
+    MOV bikeX, AL
     RET
 AnimateBike ENDP
 
@@ -375,10 +378,14 @@ WaitForRestart ENDP
 
 Delay PROC
     PUSH CX
-    MOV CX, 0FFFFh            ; Delay counter
+    PUSH AX
+    MOV CX, 5000h            ; Adjusted delay for better gameplay
 DelayLoop:
     NOP
-    LOOP DelayLoop
+    NOP
+    DEC CX
+    JNZ DelayLoop
+    POP AX
     POP CX
     RET
 Delay ENDP
