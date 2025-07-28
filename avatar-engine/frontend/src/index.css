@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Custom classes for Midjourney-style UI */
+.glass {
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  padding: 1px;
+  border-radius: 8px;
+}
+
+.gradient-border > div {
+  background: #111827;
+  border-radius: 7px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.generation-card {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.generation-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.upload-area {
+  border: 2px dashed #4b5563;
+  transition: all 0.3s ease;
+}
+
+.upload-area.drag-active {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  height: 4px;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Loading animations */
+.pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Status indicators */
+.status-training {
+  background: linear-gradient(45deg, #f59e0b, #f97316);
+}
+
+.status-completed {
+  background: linear-gradient(45deg, #10b981, #059669);
+}
+
+.status-failed {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+/* NSFW toggle styles */
+.nsfw-toggle {
+  position: relative;
+}
+
+.nsfw-toggle::after {
+  content: "🔞";
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
